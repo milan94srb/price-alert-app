@@ -43,7 +43,7 @@ export default {
   },
   methods: {
       saveAlert: function(){
-          this.$http.post('http://localhost:4000/api/save-alert', {
+          this.$http.post('api/save-alert', {
               currency: this.alert.currency,
               condition: this.alert.condition,
               amount: this.alert.amount

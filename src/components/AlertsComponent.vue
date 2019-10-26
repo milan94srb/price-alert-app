@@ -31,19 +31,19 @@ export default {
   },
   methods: {
       deleteAlert: function(alertId){
-          this.$http.delete('http://localhost:4000/api/alerts/'+alertId).then((data) => {
+          this.$http.delete('api/alerts/'+alertId).then((data) => {
               console.log(data.body);
               bus.$emit('alertsChanged');
           });
       },
       getAlerts: function(){
-        this.$http.get('http://localhost:4000/api/alerts').then((data) => {
+        this.$http.get('api/alerts').then((data) => {
           this.localAlerts = data.body;
         });
       }
   },
   created(){
-      this.$http.get('http://localhost:4000/api/alerts').then((alerts) => {
+      this.$http.get('api/alerts').then((alerts) => {
           this.localAlerts = alerts.body;
       });
       bus.$on('alertsChanged', () => {

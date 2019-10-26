@@ -1,5 +1,5 @@
-import Vue from 'vue'
-import App from './App.vue'
+import Vue from 'vue';
+import App from './App.vue';
 import VueResource from 'vue-resource'
 import VueMeta from 'vue-meta'
 import 'bootstrap'
@@ -18,7 +18,8 @@ Vue.http.interceptors.push((request, next) => {
 
 export const bus = new Vue();
 
+Vue.config.productionTip = false;
+
 new Vue({
-  el: '#app',
-  render: h => h(App)
-})
+  render: h => h(App),
+}).$mount('#app');
