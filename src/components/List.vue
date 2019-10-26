@@ -300,8 +300,10 @@ export default {
   },
   methods: {
       checkUser: function(){
-        this.$http.get('auth/me').then(user => {
-          if('googleId' in user){
+        console.log('check user...');
+        this.$http.get('auth/me').then(response => {
+          console.log('user:', response.body);
+          if('googleId' in response.body){
             this.loggedIn = true;
           } else {
             this.loggedIn = false;

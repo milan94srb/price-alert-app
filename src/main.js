@@ -8,8 +8,10 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 Vue.use(VueResource);
 Vue.use(VueMeta);
 
-Vue.http.options.root = '/';
-Vue.url.options.root = '/';
+const serverUrl = location.href.includes('localhost') ? 'http://localhost:4000' : '/';
+
+Vue.http.options.root = serverUrl;
+Vue.url.options.root = serverUrl;
 
 Vue.http.interceptors.push((request, next) => {
   request.credentials = true;
