@@ -299,6 +299,15 @@ export default {
     }
   },
   methods: {
+      checkUser: function(){
+        this.$http.get('auth/me').then(user => {
+          if('googleId' in user){
+            this.loggedIn = true;
+          } else {
+            this.loggedIn = false;
+          }
+        })
+      },
       refreshList: function(){
           this.getUSD();
           this.getBTC();
@@ -310,11 +319,11 @@ export default {
       },
       checkAlerts: function(){
         this.$http.get('api/alerts').then((alerts) => {
-          if(Object.keys(alerts.body).length !== 0){
-            this.loggedIn = true;
-          }else{
-            this.loggedIn = false;
-          }
+          // if(Object.keys(alerts.body).length !== 0){
+          //   this.loggedIn = true;
+          // }else{
+          //   this.loggedIn = false;
+          // }
           this.triggeredAlerts = {};
           alerts.body.forEach((alert) => {
             if(alert.currency === 'USD'){
@@ -560,6 +569,7 @@ export default {
       }
   },
   created(){
+    this.checkUser();
     this.refreshList();
     bus.$on('alertsChanged', () => {
       this.refreshList();
